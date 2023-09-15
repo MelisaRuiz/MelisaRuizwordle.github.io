@@ -6,7 +6,7 @@
 
 const BUTTON = document.getElementById("guess-button");
 let cant = 6;
-//BUTTON.disabled = true;
+BUTTON.disabled = true;
 
 const API = "https://random-word-api.herokuapp.com/word?length=5"
 
@@ -14,13 +14,13 @@ fetch(API)
     .then((response)=> response.json())
     .then((response)=> {
         sorteo = response[0].toUpperCase();
-        //BUTTON.disabled = false;
+        BUTTON.disabled = false;
     })
     .catch((err)=>{
         console.log(err);
         let random = Math.floor(random() * LIBRERO.length);
         sorteo = LIBRERO[random];
-        //BUTTON.disabled = false;
+        BUTTON.disabled = false;
     });
 
 BUTTON.addEventListener("click", ()=>{
@@ -51,6 +51,7 @@ BUTTON.addEventListener("click", ()=>{
     GRID.appendChild(row)
     if (cant == 0){
         terminar("<h1>PERDISTE! ;(</h1>");
+        BUTTON.disabled = true;
     }
 function leerIntento() {
     return document.getElementById("guess-input").value.toUpperCase();
@@ -63,6 +64,7 @@ function terminar (mensaje) {
     span.className = 'letter';
     span.innerHTML = letra;
     span.style.backgroundColor = color;
+    span.style.Color = "white";
     return span
      } 
 });

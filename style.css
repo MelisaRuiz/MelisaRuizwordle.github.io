@@ -1,5 +1,6 @@
 body {
   font-family: Arial, sans-serif;
+  text-align: center;
   }    
 h1 {
   text-align: center;
@@ -18,22 +19,25 @@ h1 {
   margin: 0 auto;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #0CBABA;
-  color: #fff;
   border: none;
   border-radius: 3px;
   }    
 button:active {
+  background-color: #e0e4e4;
+  color: #000000;
   transform: scale(0.95);
   } 
-button :disabled {
-  background-color: rgb(198, 196, 196);
+button:disabled {
+  background-color: rgb(119, 118, 118);
+  color: black;
   } 
 .letter {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
+  color: white;
   padding: 3px;
   margin: 3px;
-  min-width: 50px;
+  min-width: 45px;
+  min-height: 20px;
   text-align: center;
   display: inline-block
   } 
