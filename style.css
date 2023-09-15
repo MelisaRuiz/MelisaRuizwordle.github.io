@@ -25,7 +25,10 @@ h1 {
   }    
 button:active {
   transform: scale(0.95);
-  }  
+  } 
+button :disabled {
+  background-color: rgb(198, 196, 196);
+  } 
 .letter {
   border: 1px solid black;
   padding: 3px;

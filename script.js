@@ -1,27 +1,27 @@
-const LIBRERO = ["APPLE", "TABLE", "MOUSE"];
-let random = Math.floor(Math.random()*LIBRERO.length);
-const sorteo = LIBRERO[random];
+//const LIBRERO = ["APPLE", "TABLE", "MOUSE"];
+//let random = Math.floor(Math.random()*LIBRERO.length);
+//const sorteo = LIBRERO[random];
 //const sorteo = "APLLE";
 //let sorteo = "APPLE";
-//console.log(sorteo);
-let cant = 6;
+
 const BUTTON = document.getElementById("guess-button");
-//BUTTON.disbled = true;
+let cant = 6;
+//BUTTON.disabled = true;
 
-//const API = "https://random-word-api.herokuapp.com/word?length=5"
+const API = "https://random-word-api.herokuapp.com/word?length=5"
 
-//fetch(API)
-    //.then((response)=> response.json())
-    //.then((response)=> {
-        //sorteo = response[0].toUpperCase();
-        //BUTTON.disbled = false;
-    //})
-    //.catch((err)=>{
-        //console.log(err);
-        //let random = Math.floor(random() * LIBRERO.length);
-        //sorteo = LIBRERO[random];
-        //BUTTON.disbled = false;
-    //});
+fetch(API)
+    .then((response)=> response.json())
+    .then((response)=> {
+        sorteo = response[0].toUpperCase();
+        //BUTTON.disabled = false;
+    })
+    .catch((err)=>{
+        console.log(err);
+        let random = Math.floor(random() * LIBRERO.length);
+        sorteo = LIBRERO[random];
+        //BUTTON.disabled = false;
+    });
 
 BUTTON.addEventListener("click", ()=>{
     const INTENTO = leerIntento();
@@ -45,7 +45,7 @@ BUTTON.addEventListener("click", ()=>{
                 let cuadroLetra = armarLetra(INTENTO[i], "gray");
                 row.appendChild(cuadroLetra);
                 } 
-        }
+            }
         cant--;
         }
     GRID.appendChild(row)
@@ -58,11 +58,11 @@ function leerIntento() {
 function terminar (mensaje) {
     document.getElementById("mensaje").innerHTML = mensaje;
     }
-function armarLetra(letra, color){
+ function armarLetra(letra, color){
     let span = document.createElement("span");
     span.className = 'letter';
     span.innerHTML = letra;
     span.style.backgroundColor = color;
     return span
-    } 
+     } 
 });
