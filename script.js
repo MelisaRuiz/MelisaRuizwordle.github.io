@@ -1,10 +1,6 @@
-//const LIBRERO = ["APPLE", "TABLE", "MOUSE"];
-//let random = Math.floor(Math.random()*LIBRERO.length);
-//const sorteo = LIBRERO[random];
-//const sorteo = "APLLE";
-//let sorteo = "APPLE";
 
 const BUTTON = document.getElementById("guess-button");
+const MAL = document.getElementById('mal');
 let cant = 6;
 BUTTON.disabled = true;
 
@@ -15,6 +11,7 @@ fetch(API)
     .then((response)=> {
         sorteo = response[0].toUpperCase();
         BUTTON.disabled = false;
+        console.log (sorteo);
     })
     .catch((err)=>{
         console.log(err);
@@ -28,10 +25,17 @@ BUTTON.addEventListener("click", ()=>{
     const GRID = document.getElementById("grid");
     let row = document.createElement("div");
     row.className = "row";
+    if (INTENTO.length !=5){
+        MAL.style.display = 'block';
+        armarLetra.style.display = 'none';
+        }
     if (sorteo == INTENTO){
         terminar("<h1>GANASTE! ;)</h1>");
+        BUTTON.disabled = true;
+        MAL.style.display = 'none';
         }
     else {
+    BUTTON.disabled = false;
         for (let i in sorteo){
             if (sorteo[i] === INTENTO[i]){
                 let cuadroLetra = armarLetra(INTENTO[i], "green");
@@ -49,6 +53,7 @@ BUTTON.addEventListener("click", ()=>{
         cant--;
         }
     GRID.appendChild(row)
+    MAL.style.display = 'none';
     if (cant == 0){
         terminar("<h1>PERDISTE! ;(</h1>");
         BUTTON.disabled = true;
@@ -64,7 +69,8 @@ function terminar (mensaje) {
     span.className = 'letter';
     span.innerHTML = letra;
     span.style.backgroundColor = color;
-    span.style.Color = "white";
     return span
-     } 
+    }
+
+console.log (sorteo); 
 });

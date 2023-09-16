@@ -1,11 +1,14 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  }    
+  margin: 0;
+  display: grid;
+  place-items: center;
+  }
 h1 {
   text-align: center;
   margin-top: 50px;
-  }  
+  }
 #guess-input {
   display: block;
   margin: 0 auto 20px;
@@ -39,11 +42,23 @@ button:disabled {
   min-width: 45px;
   min-height: 20px;
   text-align: center;
-  display: inline-block
-  } 
+  display: inline-block;
+  }
+#titulo{
+  font-size: 20px;
+  }
 .row{
   margin-bottom: 10px;
   }
 .input-area{
   margin: 30px;
+  }
+#mal {
+  color:red;
+  display: none;
+  background-color: transparent;
+  border: none;
+  margin: 0 auto;
+  transform: none;
+  font-size: 14px;
   }
