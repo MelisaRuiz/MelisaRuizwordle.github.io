@@ -1,19 +1,96 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Wordle PPY</title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordlePPY - Laboratorio de Seguridad</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="Wordle.png">
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <h1>Wordle PPY</h1>
-    <input type="text" id="guess-input">
-    <button id="mal">Introduce una palabra de 5 letras</button>
-    <br>
-    <button id="guess-button">Intentar</button>
-    <br>
-    <div id="grid"></div>
-    <p id="mensaje"></p>
-  </body>
+    
+    <!-- CSP Vulnerable (modo educativo) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
+</head>
+<body class="vulnerable-mode">
+    <div class="container">
+        <!-- Header del Laboratorio -->
+        <header class="lab-header">
+            <h1>🔐 WordlePPY Security Lab</h1>
+            <p class="subtitle">Laboratorio educativo de vulnerabilidades web</p>
+            
+            <div class="mode-control">
+                <span id="lab-mode" class="mode-badge vulnerable">MODO VULNERABLE</span>
+                <button id="toggle-mode" class="toggle-btn">🛡️ Cambiar a Modo Seguro</button>
+            </div>
+        </header>
+
+        <!-- Juego Wordle Original (tu código) -->
+        <section class="wordle-section">
+            <h2>🎮 Wordle Original</h2>
+            <div id="grid" class="game-grid"></div>
+            
+            <div class="input-area">
+                <input type="text" id="guess-input" placeholder="Escribe una palabra de 5 letras..." 
+                       maxlength="5" class="game-input">
+                <button id="guess-button" class="game-btn">Adivinar</button>
+            </div>
+            
+            <div id="mensaje" class="message"></div>
+            <button id="mal" class="error-btn">✕</button>
+        </section>
+
+        <!-- Laboratorio de Seguridad -->
+        <section class="security-lab">
+            <h2>🔓 Laboratorio de Vulnerabilidades</h2>
+            
+            <!-- XSS Challenge -->
+            <div class="challenge">
+                <h3>🎯 Desafío XSS (Cross-Site Scripting)</h3>
+                <p>Comparte un mensaje de victoria personalizado:</p>
+                <div class="input-group">
+                    <input type="text" id="custom-message" 
+                           placeholder="Ej: ¡Gané en 3 intentos! 🎉" 
+                           class="vuln-input">
+                    <button onclick="shareMessage()" class="vuln-btn">Compartir</button>
+                </div>
+                <div id="message-display" class="output-area"></div>
+            </div>
+
+            <!-- CSRF Challenge -->
+            <div class="challenge">
+                <h3>🎯 Desafío CSRF (Cross-Site Request Forgery)</h3>
+                <p>Guarda tu puntuación máxima:</p>
+                <form id="score-form" class="vuln-form">
+                    <input type="text" name="username" placeholder="Tu nombre" required>
+                    <input type="number" name="score" value="1000" min="0" max="9999">
+                    <button type="button" onclick="saveHighScore()" class="vuln-btn">
+                        Guardar Puntuación
+                    </button>
+                </form>
+            </div>
+
+            <!-- Demostraciones -->
+            <div class="demo-section">
+                <h3>🛠️ Demostraciones Prácticas</h3>
+                <div class="demo-buttons">
+                    <button onclick="demoXSS()" class="demo-btn">🎯 Demo XSS</button>
+                    <button onclick="demoCSRF()" class="demo-btn">🎯 Demo CSRF</button>
+                    <button onclick="showFix()" class="demo-btn fix-btn">🛡️ Ver Solución</button>
+                </div>
+                <div id="demo-output" class="demo-output"></div>
+            </div>
+        </section>
+
+        <!-- Información -->
+        <footer class="info-footer">
+            <p>⚠️ <strong>ADVERTENCIA:</strong> Este es un laboratorio educativo. No ejecutes estos ataques en sitios reales.</p>
+            <p>Consulta la documentación en la carpeta <code>docs/</code> para aprender más.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>      <!-- Tu Wordle original -->
+    <script src="vulnerable.js"></script>  <!-- Funciones vulnerables -->
+    <script src="secure.js"></script>      <!-- Funciones seguras -->
+    <script src="main.js"></script>        <!-- Controlador principal -->
+</body>
 </html>
